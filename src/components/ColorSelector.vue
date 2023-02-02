@@ -1,6 +1,6 @@
 <template>
     <aside>
-        <div class="currentColor" id="currentColor">
+        <div :style="{ backgroundColor: getCurrentColor }" class="currentColor" id="currentColor">
             <Colorpanel v-if="getColorPanelDisplay" />
         </div>
         <p>Choose a color !</p>
@@ -19,7 +19,7 @@ export default {
         Colorpanel,
     },
     computed: {
-        ...mapGetters('colorSelector', ['getColorPanelDisplay']),
+        ...mapGetters('colorSelector', ['getColorPanelDisplay', 'getCurrentColor']),
     },
     methods: {
         ...mapMutations('', ['']),
@@ -41,7 +41,6 @@ aside {
     width: 50px;
     border-radius: .5rem;
     cursor: pointer;
-    background-color: aqua;
 }
 .currentColor:hover {
     border-color: grey;

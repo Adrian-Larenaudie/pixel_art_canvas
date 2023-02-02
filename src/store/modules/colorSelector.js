@@ -5,6 +5,23 @@ export default {
     state:() => ({
         currentColor: '#fff',
         colorPanelDisplay: false,
+        colorArray: [
+            '#2980B9 ',
+            '#3498DB',
+            '#8E44AD',
+            '#9B59B6',
+            '#E74C3C',
+            '#C0392B',
+            '#D35400',
+            '#E67E22',
+            '#F1C40F',
+            '#27AE60',
+            '#16A085',
+            '#1ABC9C',
+            '#34495E',
+            '#BDC3C7',
+            '#FDFEFE',
+        ]
     }), 
     
     getters: {
@@ -17,6 +34,11 @@ export default {
         // récupère la valeur de colorPanelDisplay
         getColorPanelDisplay: (state) => {
             return state.colorPanelDisplay;
+        },
+
+        // récupère la valeur de colorArray
+        getColorArray: (state) => {
+            return state.colorArray;
         }
     },
 
