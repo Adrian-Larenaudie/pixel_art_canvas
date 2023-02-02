@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Jet Brains Mono';
+  src: url('./fonts/JetBrainsMono-Bold.ttf') format('truetype');
+  src: url('./fonts/JetBrainsMono-ExtraBold.ttf') format('truetype');
+  src: url('./fonts/JetBrainsMono-ExtraLight.ttf') format('truetype');
+  src: url('./fonts/JetBrainsMono-Light.ttf') format('truetype');
+}
+
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
   --vt-c-white: #ffffff;
@@ -65,8 +73,7 @@ body {
   background: var(--color-background);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Jet Brains Mono', sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
