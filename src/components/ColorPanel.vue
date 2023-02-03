@@ -1,6 +1,12 @@
 <template>
     <div id="colorPanel" class="colorPanel">
         <div class="colorSelect" v-for="color in getColorArray" :style="{ backgroundColor: color }"></div>
+        <div class="custumColorSelector selector">
+            <input type="color" class="selector inputColor" id="head" name="head" value="#e66465">
+            <label for="head" class="selector">Custom color</label>
+            <button @click="onClick" class="buttonColor">Validate</button>
+        </div>
+        
     </div>
 </template>
 
@@ -13,7 +19,11 @@ export default {
         ...mapGetters('colorSelector', ['getColorPanelDisplay', 'getCurrentColor', 'getColorArray']),
     },    
     methods: {
-        ...mapMutations('', ['']),
+        ...mapMutations('colorSelector', ['setNewColor']),
+        onClick() {
+            this.setNewColor(document.querySelector('#head').value)
+           
+        }
     },
     mounted() {
         
@@ -27,7 +37,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     height: fit-content;
-    width: calc(150px + 1.6rem);
+    width: calc(200px + 2rem);
     position: absolute;
     background-color:  var(--color-background);
     top: -300px;
@@ -45,5 +55,11 @@ export default {
 }
 .colorSelect:hover {
     border-color: grey;
+}
+.custumColorSelector {
+    padding: 1rem;
+}
+.buttonColor, .inputColor {
+    cursor: pointer;
 }
 </style>

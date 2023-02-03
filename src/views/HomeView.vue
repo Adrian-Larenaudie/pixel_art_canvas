@@ -19,7 +19,7 @@ export default {
     components: {
         TopHeader,
         PixelCanvas,
-        ColorSelector,
+        ColorSelector
     },
     computed: {
         ...mapGetters('colorSelector', ['getColorPanelDisplay']),
@@ -33,8 +33,8 @@ export default {
             if(event.target.id === 'currentColor') {
                 this.toggleColorPanelDisplay();
             } 
-            // sinon si on click sur le colorPanel mais qu'il ne s'agit pas d'une couleur
-            else if (event.target.id === 'colorPanel') {
+            // sinon si on click sur le colorPanel mais qu'il ne s'agit pas d'une couleur (y compris l'input color ou son label cad class selector)
+            else if (event.target.id === 'colorPanel' || event.target.classList.value.includes('selector')) {
                 // on ne fait rien
             }
             // sinon si on click sur une couleur du colorPanel
