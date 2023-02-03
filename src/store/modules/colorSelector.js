@@ -25,7 +25,6 @@ export default {
     }), 
     
     getters: {
-
         // récupère la valeur de currentColor
         getCurrentColor: (state) => {
             return state.currentColor;
@@ -43,11 +42,10 @@ export default {
     },
 
     actions: {
-        // aucune action pour le moment
+        // pas d'actions pour le moment
     },
     
     mutations: {
-
         // passe la valeur du champ colorPanelDisplay à false
         setColorPanelDisplayToFalse(state) {
             state.colorPanelDisplay = false;
