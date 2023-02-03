@@ -5,6 +5,7 @@ export default {
     }), 
     
     getters: {
+
         getGridData: (state) => {
             return state.gridData;
         }
@@ -15,8 +16,18 @@ export default {
     },
     
     mutations: {
-        setNewPixel(state) {
-            
+
+        setGridData(state, gridData) {
+            return state.gridData = gridData;
+        },
+
+        setNewPixelColor(state, pixelId, color) {
+           const newGridData = state.gridData.map((pixel) => {
+                if(pixel.pixelId === pixelId) {
+                    pixel.color = color;
+                };
+            });
+            return state.gridData = newGridData;
         }
     },
 };

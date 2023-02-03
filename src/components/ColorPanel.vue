@@ -16,7 +16,6 @@ export default {
         ...mapMutations('', ['']),
     },
     mounted() {
-        console.log('coucou');
         
     }
 }
