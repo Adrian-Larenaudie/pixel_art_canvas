@@ -21,12 +21,15 @@ export default {
             return state.gridData = gridData;
         },
 
-        setNewPixelColor(state, pixelId, color) {
-           const newGridData = state.gridData.map((pixel) => {
-                if(pixel.pixelId === pixelId) {
-                    pixel.color = color;
+        setNewPixelColor(state, payload) {
+            const newGridData = [];
+            state.gridData.forEach((pixel) => {
+                if(pixel.pixelId === payload.pixelId) {
+                    pixel.color = payload.color;
                 };
+                newGridData.push(pixel)
             });
+            localStorage.setItem('pixelArtCanvas', JSON.stringify(newGridData));
             return state.gridData = newGridData;
         }
     },
