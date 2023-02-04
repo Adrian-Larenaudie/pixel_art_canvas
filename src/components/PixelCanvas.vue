@@ -1,3 +1,4 @@
+<!-- affiche la zone de dessin si on clique sur un des pixels de la zone, le pixel prend la couleur définit dans le selecteur de couleur -->
 <template>
     <main>
         <!-- 38 colonnes de 10 pixels & 30 lignes de 10 pixels -->

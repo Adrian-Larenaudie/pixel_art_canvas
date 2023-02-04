@@ -1,3 +1,4 @@
+<!-- affiche un boutton pour réinitialiser la zone de dessin -->
 <template>
     <div>
         <button @click="onClick">Clean canvas</button>

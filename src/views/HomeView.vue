@@ -1,11 +1,15 @@
+<!-- affiche la vue principale -->
 <template>
-    <div class="app" @click="onClick">
+    <div @click="onClick" class="app">
+        <!-- boutton pour nettoyer le canvas -->
         <CleanCanvasButton />
+        <!-- le header avec le titre -->
         <TopHeader />
+        <!-- la zone qui permet de poser un pixel de couleur  -->
         <PixelCanvas />
+        <!-- le selector de couleur pour le pixel -->
         <ColorSelector />
     </div>
-
 </template>
 
 <script>
@@ -40,8 +44,8 @@ export default {
             else if (event.target.id === 'colorPanel' || event.target.classList.value.includes('selector')) {
                 // on ne fait rien
             }
-            // sinon si on click sur une couleur du colorPanel
-            else if (event.target.parentElement.id === 'colorPanel') {
+            // sinon si on click sur une couleur du colorPanel ou une couleur du customColorList
+            else if (event.target.parentElement.id === 'colorPanel' || event.target.parentElement.classList.value.includes('customColorList')) {
                 // on va modifier la currentColor dans le state
                 this.setNewColor(event.target.style.backgroundColor);
                 // puis on ferme le panel
@@ -58,8 +62,6 @@ export default {
 
 <style>
 .app {
-    min-height: 100vh;
-    position: relative;
-    user-select: none;
+    height: 96vh;
 }
 </style>

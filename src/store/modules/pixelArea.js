@@ -9,7 +9,7 @@ export default {
         // récupère la valeur du state gridData
         getGridData: (state) => {
             return state.gridData;
-        }
+        },
     },
 
     actions: {
@@ -21,10 +21,12 @@ export default {
         cleanGridData(state) {
             return state.gridData = [];
         },
+
         // modifie la valeur du state gridData
         setGridData(state, gridData) {
             return state.gridData = gridData;
         },
+
         // modifie la valeur de la couleur d'un pixel de la grille
         setNewPixelColor(state, payload) {
             // dans le payload on récupère un id de pixel & une couleur
@@ -43,6 +45,6 @@ export default {
             localStorage.setItem('pixelArtCanvas', JSON.stringify(newGridData));
             // on modifie le state de gridData en lui donnant la valeur du nouveau tableau qui contient la nouvelle couleur
             return state.gridData = newGridData;
-        }
+        },
     },
 };

@@ -1,6 +1,8 @@
+<!-- affiche la couleur courante dans un carré permet d'ouvrir la panneau de sélection de couleur sur le click -->
 <template>
     <aside>
         <div :style="{ backgroundColor: getCurrentColor }" class="currentColor" id="currentColor">
+            <!-- colorpanel est le panneau de selection de couleur -->
             <Colorpanel v-if="getColorPanelDisplay" />
         </div>
         <p>Choose a color !</p>

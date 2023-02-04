@@ -1,3 +1,4 @@
+// ce service permet de générer les valeurs qui elles même permettent de générer chaque pixels de la zone de dessin
 let generateGridData = (currentGridData) => {
      // les données serons stockées dans le tableau gridData
     let gridData = [];

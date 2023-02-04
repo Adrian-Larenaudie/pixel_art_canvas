@@ -3,8 +3,20 @@ export default {
     namespaced: true,
 
     state:() => ({
-        currentColor: '#1D8348',
+        // la couleur qui sera utilisée lors du click sur un pixel du canvas
+        currentColor: 'grey',
+        // le booléen qui définit si le pannel de selection de couleur est affiché ou non
         colorPanelDisplay: false,
+        // l'index qui permet de situer l'endroit du tableau qui doit prendre la valeur de la nouvelle custom color
+        customColorIndex: 0,
+        // le tableau qui stock les 4 couleurs custom (stocké en local storage)
+        customColorArray: [
+           '#FFF', 
+           '#FFF', 
+           '#FFF', 
+           '#FFF', 
+        ],
+        // le tableau des couleur sélectionnables par défaut
         colorArray: [
             '#2980B9 ',
             '#3498DB',
@@ -39,7 +51,11 @@ export default {
         // récupère la valeur de colorArray
         getColorArray: (state) => {
             return state.colorArray;
-        }
+        },
+        // récupère la liste des couleurs custom
+        getCustomColorArray: (state) => {
+            return state.customColorArray;
+        },
     },
 
     actions: {
@@ -47,6 +63,20 @@ export default {
     },
     
     mutations: {
+        // ajoute une nouvelle couleur custom au state sustumArray
+        setNewCustomColor(state, newColor) {
+            // ajoute la couleur passer en paramètre dans le tableau du state customColorArray à l'index du state customColorIndex
+            state.customColorArray[state.customColorIndex] = newColor;
+            // modification de l'index customColorIndex
+            if(state.customColorIndex === state.customColorArray.length - 1) {
+                state.customColorIndex = 0;
+            } else {
+                state.customColorIndex++;
+            };
+            // ajout en local storage du tableau des custom color 
+            localStorage.setItem('customColorArray', JSON.stringify(state.customColorArray));
+        },
+
         // passe la valeur du champ colorPanelDisplay à false
         setColorPanelDisplayToFalse(state) {
             state.colorPanelDisplay = false;
@@ -60,6 +90,11 @@ export default {
         // modifie la valeur de currentColor par une couleur récupérée dans les paramètres
         setNewColor(state, newColor) {
             state.currentColor = newColor;
-        }
+        },
+        
+        // modifie le valeur de customColorArray
+        setCustomColorArray(state, customColorArray) {
+            state.customColorArray = customColorArray;
+        },
     },
 };
