@@ -3,7 +3,7 @@ export default {
     namespaced: true,
 
     state:() => ({
-        currentColor: '#fff',
+        currentColor: '#1D8348',
         colorPanelDisplay: false,
         colorArray: [
             '#2980B9 ',

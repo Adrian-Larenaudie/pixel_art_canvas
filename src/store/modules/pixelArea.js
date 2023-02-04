@@ -17,6 +17,10 @@ export default {
     },
     
     mutations: {
+        // remet le state gridData à sa valeur initial cad un tableau vide
+        cleanGridData(state) {
+            return state.gridData = [];
+        },
         // modifie la valeur du state gridData
         setGridData(state, gridData) {
             return state.gridData = gridData;

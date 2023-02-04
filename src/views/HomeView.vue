@@ -1,5 +1,6 @@
 <template>
     <div class="app" @click="onClick">
+        <CleanCanvasButton />
         <TopHeader />
         <PixelCanvas />
         <ColorSelector />
@@ -12,6 +13,7 @@
 import TopHeader from '@/components/TopHeader.vue';
 import PixelCanvas from '@/components/PixelCanvas.vue';
 import ColorSelector from '@/components/ColorSelector.vue';
+import CleanCanvasButton from '@/components/CleanCanvasButton.vue';
 import { mapMutations, mapGetters } from 'vuex';
 
 export default {
@@ -19,7 +21,8 @@ export default {
     components: {
         TopHeader,
         PixelCanvas,
-        ColorSelector
+        ColorSelector,
+        CleanCanvasButton
     },
     computed: {
         ...mapGetters('colorSelector', ['getColorPanelDisplay']),
@@ -56,5 +59,7 @@ export default {
 <style>
 .app {
     min-height: 100vh;
+    position: relative;
+    user-select: none;
 }
 </style>

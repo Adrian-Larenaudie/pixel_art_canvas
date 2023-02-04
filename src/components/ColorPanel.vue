@@ -21,8 +21,7 @@ export default {
     methods: {
         ...mapMutations('colorSelector', ['setNewColor']),
         onClick() {
-            this.setNewColor(document.querySelector('#head').value)
-           
+            this.setNewColor(document.querySelector('#head').value)   
         }
     },
     mounted() {
@@ -40,7 +39,7 @@ export default {
     width: calc(200px + 2rem);
     position: absolute;
     background-color:  var(--color-background);
-    top: -300px;
+    top: -325px;
     border-radius: .5rem;
     z-index: 1;
 }
@@ -57,9 +56,26 @@ export default {
     border-color: grey;
 }
 .custumColorSelector {
-    padding: 1rem;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
 }
 .buttonColor, .inputColor {
     cursor: pointer;
 }
+label {
+    margin: 0 .2rem;
+    font-size: .8rem;
+}
+.buttonColor {
+    margin: .5rem 0;
+    padding: .2rem;
+    border-radius: .3rem;
+    font-family: 'Jet Brains Mono';
+    font-weight: 600;
+}
+.buttonColor:hover {
+    background-color: #fff;
+}
+
 </style>
