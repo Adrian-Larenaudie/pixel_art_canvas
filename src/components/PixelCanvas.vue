@@ -4,7 +4,7 @@
         <!-- 38 colonnes de 10 pixels & 30 lignes de 10 pixels -->
         <div  id="pixelCanvas">
             <!-- la div correspond à un pixel elle est lié au state gridData -->
-            <div @click="onPixelClick"
+            <div @mouseover="onHover" @mouseleave="onLeave" @click="onPixelClick"
                 class="pixel"
                 v-for="pixelData in getGridData"
                 :id="pixelData.pixelId"
@@ -37,6 +37,13 @@ export default {
             // on appel la mutation qui permet de mettre à jour la couleur du pixel cliqué dans le state
             this.setNewPixelColor({color: this.getCurrentColor, pixelId: parseInt(event.target.id, 10)})
         },
+        // pour aider l'utilisateur à visialiser le pixel survolé changement de l'opacité sur les events mouseover & mouseleave 
+        onHover(event) {
+            event.target.style.opacity = '.9';
+        },
+        onLeave(event) {
+            event.target.style.opacity = '1';
+        },
     },
     mounted() {
         const gridData = generateGridService.generateGridData(this.getGridData);
@@ -58,5 +65,8 @@ main {
     margin: auto;
     background-color: #000;
     cursor: pointer;
+}
+.pixel {
+    transition: .1s;
 }
 </style>
