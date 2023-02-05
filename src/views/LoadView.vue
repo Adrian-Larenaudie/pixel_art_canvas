@@ -37,6 +37,8 @@ export default {
         backHome() {
             this.$router.push({ path: '/' });
         },
+
+        // permet de charger un dessin
         loading(event) {
             // récupération de la sauvegarde 
             const save = this.getSaveById(parseInt(event.target.value, 10));

@@ -2,7 +2,7 @@
 <template>
     <main>
         <!-- 38 colonnes de 10 pixels & 30 lignes de 10 pixels -->
-        <div  id="pixelCanvas">
+        <div id="pixelCanvas">
             <!-- la div correspond à un pixel elle est lié au state gridData -->
             <div @mouseover="onHover" @mouseleave="onLeave" @click="onPixelClick"
                 class="pixel"

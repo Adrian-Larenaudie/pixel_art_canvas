@@ -1,14 +1,18 @@
-<!-- affiche trois bouttons: clean du canvas, accès aux saves, accès aux chargements -->
+<!-- affiche 4 bouttons: clean du canvas, accès aux saves, accès aux chargements, téléchargement du dessin -->
 <template>
     <div class="buttonSide">
         <button @click="displaySaveView">Save</button>
         <button @click="displayLoadView">Load</button>
+        <button @click="downloadAsImage">Download</button>
         <button @click="clearCanvas">Clear</button>
     </div>
 </template>
 <script>
 import { mapGetters, mapMutations } from 'vuex';
 import { generateGridService } from '@/services';
+
+// Importation du package html2canvas
+import html2canvas from "html2canvas";
 
 export default {
     name: 'ButtonsSide',
@@ -17,6 +21,8 @@ export default {
     },
     methods: {
         ...mapMutations('pixelArea', ['setGridData', 'cleanGridData']),
+
+        // remet le canvas dans son état initial (efface le dessin)
         clearCanvas() {
             // sur le click du boutton clean on va demander la confirmation au user 
             if(confirm('This action will clean the drawing area, are you sure?')) {
@@ -30,14 +36,40 @@ export default {
                 this.setGridData(gridData);
             }
         },
+
         // affiche la vue d'enregistrement d'une sauvegarde
         displaySaveView() {
             this.$router.push({ path: '/saves' });
         },
-        // zffiche la vue de chargement d'une sauvegarde
+
+        // affiche la vue de chargement d'une sauvegarde
         displayLoadView() {
             this.$router.push({ path: '/load' })
-        }
+        },
+
+        // permet de télécharger l'image par l'utilisateur
+        downloadAsImage() {
+            // à l'aide du module html2canvas on va faire une capture du contenu de la div #pixelCanvas
+            html2canvas(document.querySelector("#pixelCanvas"), {
+                // Autoriser les images externes
+                allowTaint: true,
+                // Autoriser l'utilisation de CORS
+                useCORS: true
+                // Lorsque la capture est terminée, le canvas est retourné
+                }).then(canvas => {
+                    // Conversion du canvas en un objet Blob
+                    canvas.toBlob(blob => {
+                        // Création d'un lien HTML
+                        const link = document.createElement("a"); 
+                        // Définition de l'URL du lien à partir de l'objet Blob
+                        link.href = URL.createObjectURL(blob);
+                        // Définition du nom du fichier à télécharger
+                        link.download = "myPixelArt.jpg";
+                        // Déclenchement pragmatique du téléchargement en utilisant la méthode click pour simuler un click sur le lien
+                        link.click();
+                    });
+            });
+        },
     }
 }
 </script>
