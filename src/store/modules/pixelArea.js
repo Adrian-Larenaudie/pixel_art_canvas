@@ -24,6 +24,8 @@ export default {
 
         // modifie la valeur du state gridData
         setGridData(state, gridData) {
+            // on met à jour le local storage pour une persistence de données dans le navigateur du user
+            localStorage.setItem('pixelArtCanvas', JSON.stringify(gridData));
             return state.gridData = gridData;
         },
 

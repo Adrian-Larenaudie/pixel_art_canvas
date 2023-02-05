@@ -1,8 +1,8 @@
 <!-- affiche la vue principale -->
 <template>
     <div @click="onClick" class="app">
-        <!-- boutton pour nettoyer le canvas -->
-        <CleanCanvasButton />
+        <!-- liste des bouttons pour clean le canvas/accéder aux saves/accéder aux chargements -->
+        <ButtonsSide />
         <!-- le header avec le titre -->
         <TopHeader />
         <!-- la zone qui permet de poser un pixel de couleur  -->
@@ -17,7 +17,7 @@
 import TopHeader from '@/components/TopHeader.vue';
 import PixelCanvas from '@/components/PixelCanvas.vue';
 import ColorSelector from '@/components/ColorSelector.vue';
-import CleanCanvasButton from '@/components/CleanCanvasButton.vue';
+import ButtonsSide from '@/components/ButtonsSide.vue';
 import { mapMutations, mapGetters } from 'vuex';
 
 export default {
@@ -26,7 +26,7 @@ export default {
         TopHeader,
         PixelCanvas,
         ColorSelector,
-        CleanCanvasButton
+        ButtonsSide
     },
     computed: {
         ...mapGetters('colorSelector', ['getColorPanelDisplay']),

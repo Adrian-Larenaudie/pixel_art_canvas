@@ -21,7 +21,6 @@
 <script>
 
 import { mapGetters, mapMutations } from 'vuex';
-import { generateGridService } from '@/services';
 
 export default {
     name: 'PixelCanvas',
@@ -45,10 +44,6 @@ export default {
             event.target.style.opacity = '1';
         },
     },
-    mounted() {
-        const gridData = generateGridService.generateGridData(this.getGridData);
-        this.setGridData(gridData);
-    }
 }
 </script>
 

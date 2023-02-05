@@ -1,6 +1,6 @@
 // ce service permet de générer les valeurs qui elles même permettent de générer chaque pixels de la zone de dessin
 let generateGridData = (currentGridData) => {
-     // les données serons stockées dans le tableau gridData
+    // les données serons stockées dans le tableau gridData
     let gridData = [];
     // si il y a déjà un canvas enregistré dans le localstorage
     if(localStorage.getItem('pixelArtCanvas')) {
@@ -26,8 +26,14 @@ let generateGridData = (currentGridData) => {
                 pixelId++;
             }        
         }
-        return gridData
+        // on retourne la grille générée
+        return gridData;
+    } 
+    // sinon si pas de données en local storage mais un state déjà généré on retourne currentGridData
+    else {
+        return currentGridData;
     }
+   
 };
 
 export const generateGridService = {

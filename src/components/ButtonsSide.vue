@@ -1,7 +1,9 @@
-<!-- affiche un boutton pour réinitialiser la zone de dessin -->
+<!-- affiche trois bouttons: clean du canvas, accès aux saves, accès aux chargements -->
 <template>
-    <div>
-        <button @click="onClick">Clean canvas</button>
+    <div class="buttonSide">
+        <button @click="displaySaveView">Save</button>
+        <button @click="displayLoadView">Load</button>
+        <button @click="clearCanvas">Clear</button>
     </div>
 </template>
 <script>
@@ -9,13 +11,13 @@ import { mapGetters, mapMutations } from 'vuex';
 import { generateGridService } from '@/services';
 
 export default {
-    name: 'CleanCanvasButton',
+    name: 'ButtonsSide',
     computed: {
         ...mapGetters('pixelArea', ['getGridData']),
     },
     methods: {
         ...mapMutations('pixelArea', ['setGridData', 'cleanGridData']),
-        onClick() {
+        clearCanvas() {
             // sur le click du boutton clean on va demander la confirmation au user 
             if(confirm('This action will clean the drawing area, are you sure?')) {
                 // le local storage est vidé
@@ -27,16 +29,27 @@ export default {
                 // et utiliser la valeur de retour pour ajouter cette nouvelle valeur dans le state gridData
                 this.setGridData(gridData);
             }
+        },
+        // affiche la vue d'enregistrement d'une sauvegarde
+        displaySaveView() {
+            this.$router.push({ path: '/saves' });
+        },
+        // zffiche la vue de chargement d'une sauvegarde
+        displayLoadView() {
+            this.$router.push({ path: '/load' })
         }
     }
 }
 </script>
 <style scoped>
-button {
+.buttonSide {
     position: absolute;
     margin: auto;   
     right: 1rem;
     top: 1rem;
+}
+button {
+    margin-right: .5rem; 
     padding: .4rem;
     border-radius: .3rem;
     font-family: 'Jet Brains Mono';
