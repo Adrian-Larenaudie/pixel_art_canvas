@@ -62,6 +62,6 @@ export default {
 
 <style>
 .app {
-    height: 96vh;
+    height: 100vh;
 }
 </style>

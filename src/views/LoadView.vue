@@ -14,7 +14,7 @@
                 <td>{{ save.saveId }}</td>
                 <td>{{ save.name }}</td>
                 <td>{{ save.date }}</td>
-                <td><button class="submitButton" @click="loading" :value="save.saveId">Charger</button></td>
+                <td><button class="submitButton" @click="loading" :value="save.saveId">Load</button></td>
             </tr>
         </tbody>
     </table>
@@ -44,8 +44,6 @@ export default {
             const save = this.getSaveById(parseInt(event.target.value, 10));
             // mise en place de la sauvegarde dans le state
             this.setGridData(save.gridData);
-            // on indique que le chargement est réussit
-            alert('Loading success');
             // on renvoit vers le canvas
             this.$router.push({ path: '/' });
         },

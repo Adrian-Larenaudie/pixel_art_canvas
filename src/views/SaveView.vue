@@ -7,7 +7,10 @@
         <caption>Registration management</caption>
         <thead>
             <tr>
-                <td class="tdTitle" colspan="5">New save:</td>
+                <td class="tdTitle" colspan="5">
+                    <p>New save:</p>
+                    <MessageInfo v-if="getMessage !== ''"/>
+                </td>
             </tr>
             <!-- l'ajout d'une nouvelle sauvegardes affiché seulement si il y a moins de 10 sauvegardes dans la liste -->
             <tr v-if="getSaveNumber <= getMaxSaveNumber">
@@ -33,10 +36,14 @@
 
 </template>
 <script>
+import MessageInfo from '@/components/MessageInfo.vue';
 import { mapGetters, mapMutations } from 'vuex';
 
 export default {
     name: 'SaveView',
+    components: {
+        MessageInfo,
+    },
     data() {
         return {
             newSaveName: '',
@@ -46,9 +53,11 @@ export default {
     computed: {
         ...mapGetters('loadSaveDraw', ['getSaveNumber', 'getMaxSaveNumber', 'getSaves', 'getMaxSaveId']),
         ...mapGetters('pixelArea', ['getGridData']),
+        ...mapGetters('message', ['getMessage']),
     },
     methods: {
         ...mapMutations('loadSaveDraw', ['setNewSave', 'setSaves', 'deleteSaveById', 'overwriteSaveById']),
+        ...mapMutations('message', ['setMessageValue']),
 
         // affiche la vue principale
         backHome() {
@@ -80,6 +89,8 @@ export default {
                 this.setNewSave(newSave);
                 // on vide l'input
                 this.newSaveName = '';
+                // modification du message info
+                this.changeInfoMessage('Saved successfully');
             // si il n'y a rien dans l'input on délivre un message différent
             } else if (this.newSaveName.trim().length === 0) {
                 this.messageInfo = 'name shouldn\'t empty';
@@ -94,7 +105,8 @@ export default {
             // appel de la mutation pour suprrimer la sauvegarde
             const saveId = parseInt(event.target.value, 10)
             this.deleteSaveById(saveId);
-            alert('Save deleted');
+            // modification du message info
+            this.changeInfoMessage('Save deleted');
         },
 
         // écrase une sauvegarde existante par une nouvelle
@@ -103,7 +115,8 @@ export default {
             const saveId = parseInt(event.target.value, 10);
             // on envoit dans la mutation le saveId, la gridData & la date courante pour faire la mise à jour de la sauvegarde
             this.overwriteSaveById({saveId: saveId, gridData: this.getGridData, date: this.formatDate(Date.now())});
-            alert('Save overwrited');
+            // modification du message info
+            this.changeInfoMessage('Save overwritten');
         },
 
         // transforme un timestamp en date au format YYYY-MM-DD
@@ -113,6 +126,17 @@ export default {
             const month = `0${date.getMonth() + 1}`.slice(-2);
             const day = `0${date.getDate()}`.slice(-2);
             return `${day}-${month}-${year}`;
+        },
+
+        // permet d'appeler la mutation pour modifier le message info puis au bout de 3 seconde efface le message
+        changeInfoMessage(message) {
+            // d'abord à vide
+            this.setMessageValue('');
+            // puis avec le message pour redéclencher l'animation
+            setTimeout(() => {
+                this.setMessageValue(message);
+            }, 100);
+            
         },
     },
     mounted() {
@@ -125,6 +149,12 @@ export default {
 </script>
 
 <style scoped>
+input {
+    border: none;
+    height: 2rem;
+    border-radius: .2rem;
+    margin-right: .5rem;
+}
 div {
     color: #fff;
 }
@@ -132,6 +162,7 @@ div {
     font-size: 1.5rem;
     color: #fff;
     font-weight: 600;
+    position: relative;
 }
 .messageInfo {
     color: #fff;

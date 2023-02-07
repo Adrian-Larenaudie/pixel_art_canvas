@@ -17,6 +17,6 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1rem;
+    padding: 1rem;
 }
 </style>
